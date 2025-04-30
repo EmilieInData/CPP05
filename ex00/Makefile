@@ -2,18 +2,22 @@ NAME = Exception
 
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address -fsanitize=leak
+FLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -pedantic -fsanitize=address -fsanitize=leak
+
+HEADER = Bureaucrat.hpp Common.hpp
 
 SRC = 	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp 
 
 OBJDIR = Build
 
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
-all: $(OBJDIR)/$(NAME)
+DEP = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.d))
 
-$(OBJDIR)/$(NAME): $(OBJ)
+all: $(NAME)
+
+$(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp Makefile | $(OBJDIR)
@@ -22,8 +26,10 @@ $(OBJDIR)/%.o: %.cpp Makefile | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $@
 
+-include $(DEP)
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(DEP)
 
 fclean: clean
 	rm -f $(NAME)

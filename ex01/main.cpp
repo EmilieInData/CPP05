@@ -6,49 +6,45 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:44:12 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/29 18:26:50 by esellier         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:40:41 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Common.hpp"
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	Bureaucrat *b = NULL;
-	
 	try
 	{
-		Bureaucrat a("Jedi", 11);
-		Bureaucrat Indie("Indie", 2);
-		//Bureaucrat Indie("Indie", 5);
-		Bureaucrat Tina = Indie;
-		Bureaucrat Doudou;
-		//Bureaucrat c("Rosie", 154);
-		b = new Bureaucrat("Nala", 149);
+		Bureaucrat	a("Jedi", 11);
+		Bureaucrat	Indie("Indie", 5);
+		//Bureaucrat	Rosie("Rosie", 0);
 		
-		std::cout << "\n" << a << Indie << Tina << Doudou << *b 
-				  << "\n" << RESET;
-				  
-		b->gradeDecrement();
-		Indie.gradeIncrement();
-		std::cout << *b << Indie
-				  << "\n" << RESET;
-				  
-		Indie.gradeIncrement();
-		std::cout << Indie
-				  << "\n" << RESET;
-				  
-		Bureaucrat c("Rosie", 154);
+		Form		f;
+		Form		f2("42b_2", 10, 10);
+		//Form		f3("42a_1", 150, 151);
+		  
+		Indie.signForm(f);
+		a.signForm(f2);
+		std::cout << GREEN << "\n" << a << Indie << f << f2 <<"\n";
 	}
 	catch (const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cout << "\n" << e.what() << "\n" << "\n";
+		std::cerr << "\n" << e.what() << "\n" << "\n";
 	}
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cout << "\n" << e.what() << "\n" << "\n";
+		std::cerr << "\n" << e.what() << "\n" << "\n";
 	}
-	delete b;
+	catch (const Form::GradeTooLowException& e)
+	{
+		std::cerr << "\n" << e.what() << "\n" << "\n";
+	}
+	catch (const Form::GradeTooHighException& e)
+	{
+		std::cerr << "\n" << e.what() << "\n" << "\n";
+	}
 	return 0;
 }

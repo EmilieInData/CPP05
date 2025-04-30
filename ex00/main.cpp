@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:44:12 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/29 18:26:50 by esellier         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:12:21 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int main()
 	}
 	catch (const Bureaucrat::GradeTooLowException& e)
 	{
-		std::cout << "\n" << e.what() << "\n" << "\n";
+		std::cerr << "\n" << e.what() << "\n" << "\n";
 	}
 	catch (const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cout << "\n" << e.what() << "\n" << "\n";
+		std::cerr << "\n" << e.what() << "\n" << "\n";
 	}
 	delete b;
 	return 0;

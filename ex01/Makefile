@@ -4,20 +4,21 @@ CC = c++
 
 FLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98 -pedantic -fsanitize=address -fsanitize=leak
 
-HEADER = Bureaucrat.hpp Common.hpp
+HEADER = Bureaucrat.hpp Form.hpp Common.hpp
 
 SRC = 	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		Form.cpp
 
 OBJDIR = Build
 
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
-DEP = $(addprefix $(OBJDIR)/, $(OBJ:.o=.d))
+DEP = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.d))
 
-all: $(OBJDIR)/$(NAME)
+all: $(NAME)
 
-$(OBJDIR)/$(NAME): $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp Makefile | $(OBJDIR)

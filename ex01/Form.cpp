@@ -6,12 +6,13 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/29 18:58:08 by esellier         ###   ########.fr       */
+/*   Updated: 2025/04/30 15:38:35 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Common.hpp"
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() : _name("Default"), _signed(false), _gradeSign(150), _gradeExecute(150)
 {
@@ -48,29 +49,23 @@ bool	Form::getSigned() const
 	return _signed;
 }
 
-const int	Form::getGradeSign() const
+unsigned int	Form::getGradeSign() const
 {
 	return _gradeSign;
 }
 
-const int	Form::getGradeExecute() const
+unsigned int	Form::getGradeExecute() const
 {
 	return _gradeExecute;
 }
 
-// void	Form::gradeIncrement()
-// {
-// 	if (_grade < 2)
-// 		throw GradeTooHighException();
-// 	_grade -= 1;
-// }
-
-// void	Form::gradeDecrement()
-// {
-// 	if (_grade > 149)
-// 		throw GradeTooLowException();
-// 	_grade += 1;
-// }
+void	Form::beSigned(Bureaucrat& b)
+{
+	if (b.getGrade() > _gradeSign)
+		throw GradeTooLowException();
+	_signed = true;
+	return;
+}
 
 Form& Form::operator=(Form const& other)
 {
@@ -98,7 +93,15 @@ const char*	Form::GradeTooLowException::what() const throw()
 
 std::ostream&	operator<<(std::ostream& o, Form const& b)
 {
-	o << BLUE << b.getName() << ", Form grade "
-	  << GREEN << b.getGrade() << RESET << "." << std::endl;
+	std::string tmp;
+	
+	if (b.getSigned() == true)
+		tmp = "signed";
+	else
+		tmp = "not signed";
+	o << BLUE << b.getName() << " form is " << GREEN << tmp << BLUE
+	  << ", it can be signed by a Bureaucrat with grade " << GREEN
+	  << b.getGradeSign() << BLUE <<  " and be executed with grade "
+	  << GREEN << b.getGradeExecute() << RESET << std::endl;
 	return (o);
 }

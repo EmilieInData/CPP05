@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/29 18:23:43 by esellier         ###   ########.fr       */
+/*   Updated: 2025/04/30 19:42:45 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 	std::cout << PURPLE << ">> Bureaucrat default constructor called" << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string value, int i)
+Bureaucrat::Bureaucrat(std::string value, int i): _name(value)
 {
 	std::cout << PURPLE << ">> Bureaucrat values constructor called" << RESET << std::endl;
 	if (i < 1)
 		throw GradeTooHighException();
 	else if (i > 150)
 		throw GradeTooLowException();
-	_name = value;
 	_grade = i;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const& other)
+Bureaucrat::Bureaucrat(Bureaucrat const& other): _name(other._name), _grade(other._grade)
 {
-	*this = other;
 	std::cout << PURPLE << ">> Bureaucrat copy constructor called" << RESET << std::endl;
 }
 
@@ -67,10 +65,7 @@ void	Bureaucrat::gradeDecrement()
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const& other)
 {
 	if (this != &other)
-	{	
-		this->_name	= other._name;
 		this->_grade = other._grade;
-	}
 	else
 		std::cout << ERROR << PINK
 				  << "pay attention, you're trying to assign an Bureaucrat class to itself"
