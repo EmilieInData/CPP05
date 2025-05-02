@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:57:26 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 16:06:53 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:04:43 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
 
 #include "Common.hpp"
-#include "AForm.hpp"
 
-class Bureaucrat;
+class AForm;
 
-class RobotomyRequestForm : public AForm
+class Intern
 {
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(RobotomyRequestForm const& other);
-		~RobotomyRequestForm();
-
-		RobotomyRequestForm&	operator=(RobotomyRequestForm const& other);
-
-	protected:
-		void					formExecute() const;
-
-	private:
-		const std::string		_target;
+		Intern();
+		Intern(Intern const& other);
+		~Intern();
+	
+		Intern& operator=(Intern const& other);
+		AForm*	makeForm(std::string formName, std::string FormTarget);
 };
-
-std::ostream&	operator<<(std::ostream& o, RobotomyRequestForm const& s);
 
 #endif

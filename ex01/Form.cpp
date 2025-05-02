@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/30 15:38:35 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:58:30 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ Form::Form(std::string value, int gs, int ge): _name(value), _signed(false), _gr
 {
 	std::cout << PURPLE << ">> Form values constructor called" << RESET << std::endl;
 	if (gs < 1 || ge < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	else if (gs > 150 || ge > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 Form::Form(Form const& other) : _gradeSign(other._gradeSign), _gradeExecute(other._gradeExecute)
@@ -62,7 +62,7 @@ unsigned int	Form::getGradeExecute() const
 void	Form::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() > _gradeSign)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	_signed = true;
 	return;
 }
@@ -79,16 +79,6 @@ Form& Form::operator=(Form const& other)
 				  << "pay attention, you're trying to assign an Form class to itself"
 				  << RESET << std::endl;
 	return (*this);
-}
-
-const char*	Form::GradeTooHighException::what() const throw()
-{
-	return PINK MEGA " Grade too high, maximum 1 (to 150)" RESET;
-}
-
-const char*	Form::GradeTooLowException::what() const throw()
-{
-	return PINK MEGA " Grade too low, minimum 150 (to 1)" RESET;
 }
 
 std::ostream&	operator<<(std::ostream& o, Form const& b)

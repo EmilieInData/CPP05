@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:57:26 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/30 14:44:17 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:57:55 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@ class Form
 		void				beSigned(Bureaucrat& b);
 		Form& 				operator=(Form const& other);
 		
-		class	GradeTooHighException : public std::exception
-		{
-			public:
-        		virtual const char* what() const throw();
-		};
-		class	GradeTooLowException : public std::exception
-		{
-			public:
-        		virtual const char* what() const throw();
-		};
-	
 	private:
 		std::string			_name;
 		bool				_signed;

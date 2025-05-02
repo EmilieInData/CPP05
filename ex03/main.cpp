@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:44:12 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 17:45:38 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:03:26 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,22 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 
 int main()
 {
+	AForm* form[4] = {NULL, NULL, NULL, NULL};
+
 	try
 	{
-		Bureaucrat	a("Jedi", 24);
-		Bureaucrat	Indie("Indie", 5);
-		//Bureaucrat	Rosie("Rosie", 0);
+		Intern I007;
 		
-		ShrubberyCreationForm	s("Test1");
-		RobotomyRequestForm		r("Test2");
-		PresidentialPardonForm	p;
-		
-		std::cout << "\n" << a << Indie << s << r << p;
-		Indie.signForm(s);
-		Indie.executeForm(s);
-		std::cout << "\n";
-		Indie.executeForm(p);
-		a.signForm(p);
-		a.executeForm(p);
-		std::cout << "\n";
-		Indie.executeForm(p);
-		Indie.signForm(r);
-		for(int i = 0; i < 6; i++)
-		{
-			Indie.executeForm(r);
-			std::cout << "\n";
-		}
-	}	
+		form[0] = I007.makeForm("Shrubbery Creation", "Indie");
+		form[1] = I007.makeForm("robotomy request", "Jedi");
+		form[2] = I007.makeForm("PRESIDENTIAL PARDON", "Rosie");
+		form[3] = I007.makeForm("trying something WRONG", "Bender");
+	}
 	catch (const Bureaucrat::GradeTooLowException& e)
 	{
 		std::cerr << "\n" << e.what() << "\n" << "\n";
@@ -54,5 +40,9 @@ int main()
 	{
 		std::cerr << "\n" << e.what() << "\n" << "\n";
 	}
+	std::cout << BLUE << *form[0] << ", and his target is " << GREEN << *form[0]._target << *form[1] << *form[2] << std::endl; 
+	for (int i = 0; i < 4; i++)
+		delete form[i];
 	return 0;
 }
+//faire un getTarget pour voir si ca fonctionne !

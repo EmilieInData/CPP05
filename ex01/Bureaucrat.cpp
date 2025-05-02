@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/04/30 19:43:36 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:59:15 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	Bureaucrat::signForm(Form& f)
 	{
 		f.beSigned(*this);
 	}
-	catch(const Form::GradeTooLowException& e)
+	catch(const GradeTooLowException& e)
 	{
 		std::cerr << "\n" << PINK << _name << " couldn't sign " 
 		<< f.getName() << " because his grade is too low " << CLOWN
