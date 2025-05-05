@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 18:56:40 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:10:36 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ AForm*	Intern::makeForm(std::string formName, std::string formTarget)
 			form = new PresidentialPardonForm(formTarget);
 			break;
 		default:
-			std::cout << MEGA << PINK << " This form doesn't exist"
+			std::cout << MEGA << PINK << " The form \"" << formTarget <<"\" doesn't exist"
 					  << RESET << std::endl;
 	}
 	return form;
