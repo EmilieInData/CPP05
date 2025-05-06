@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:00:58 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 18:58:05 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:18:32 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ AForm::AForm(std::string value, int gs, int ge): _name(value), _signed(false), _
 		throw Bureaucrat::GradeTooLowException();
 }
 
-AForm::AForm(AForm const& other) : _gradeSign(other._gradeSign), _gradeExecute(other._gradeExecute)
+AForm::AForm(AForm const& other) : _name(other._name), _gradeSign(other._gradeSign), _gradeExecute(other._gradeExecute)
 {
 	*this = other;
 	std::cout << PURPLE << ">> AForm copy constructor called" << RESET << std::endl;
@@ -70,10 +70,7 @@ void	AForm::beSigned(Bureaucrat& b)
 AForm& AForm::operator=(AForm const& other)
 {
 	if (this != &other)
-	{	
-		this->_name	= other._name;
 		this->_signed = other._signed;
-	}
 	else
 		std::cout << ERROR << PINK
 				  << "pay attention, you're trying to assign an AForm class to itself"

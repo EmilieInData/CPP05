@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:57:26 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 17:41:53 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:16:32 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class AForm
 		virtual void		formExecute() const = 0;
 
 	private:
-		std::string			_name;
+		const std::string	_name;
 		bool				_signed;
 		const unsigned int	_gradeSign;
 		const unsigned int	_gradeExecute;

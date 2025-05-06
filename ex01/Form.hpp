@@ -6,7 +6,7 @@
 /*   By: esellier <esellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:57:26 by esellier          #+#    #+#             */
-/*   Updated: 2025/05/02 16:57:55 by esellier         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:14:19 by esellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Form
 		Form& 				operator=(Form const& other);
 		
 	private:
-		std::string			_name;
+		const std::string	_name;
 		bool				_signed;
 		const unsigned int	_gradeSign;
 		const unsigned int	_gradeExecute;
